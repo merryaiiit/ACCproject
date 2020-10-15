@@ -8,7 +8,7 @@ import keystoneclient.v3.client as ksclient
 from keystoneauth1 import loading
 from keystoneauth1 import session
 
-flavor = "ssc.medium"
+flavor = "ssc.xsmall"
 private_net = "UPPMAX 2020/1-2 Internal IPv4 Network"
 floating_ip_pool_name = None
 floating_ip = None

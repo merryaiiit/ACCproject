@@ -15,4 +15,4 @@ runcmd:
  - git clone https://github.com/merryaiiit/ACCproject.git && sleep 10
  - pwd
  - cd ./ACCproject/worker
- - sudo docker-compose up
+ - sudo docker-compose -f rmq.yml up
