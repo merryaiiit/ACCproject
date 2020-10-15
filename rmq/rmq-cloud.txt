@@ -2,10 +2,15 @@
 
 apt_update: true
 apt_upgrade: false
-byobu_default: system 
+byobu_default: system
 
 runcmd:
- - sudo snap install docker
- - sleep 30
- - sudo docker run -d --name rabbitmq --network host -e RABBITMQ_DEFAULT_USER=admin -e RABBITMQ_DEFAULT_PASS=admin rabbitmq:3-management
- - sudo docker run -d --name flower --network host mher/flower:0.9.5 flower --broker=pyamqp://admin:admin@localhost:5672// --port=8888
+ - sudo apt -y install docker-compose
+ - sudo apt -y install git
+ - cd /home/ubuntu/
+ - pwd
+ - git init
+ - git clone https://github.com/merryaiiit/ACCproject.git && sleep 10
+ - pwd
+ - cd ./ACCproject/worker
+ - sudo docker-compose up
