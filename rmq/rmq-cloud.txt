@@ -5,6 +5,8 @@ apt_upgrade: false
 byobu_default: system
 
 runcmd:
+ - HOST=$(hostname)
+ - sed "/127.0.0.1/s/$/ $HOST/" /etc/hosts | sudo tee /etc/hosts
  - sudo apt -y install docker-compose
  - sudo apt -y install git
  - cd /home/ubuntu/
