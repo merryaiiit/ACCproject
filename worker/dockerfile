@@ -1,0 +1,4 @@
+FROM quay.io/fenicsproject/stable:current
+ADD ./shared /home/fenics/shared
+WORKDIR /home/fenics/shared/
+RUN pip3 install -r requirements.txt

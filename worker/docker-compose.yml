@@ -1,0 +1,33 @@
+version: '3.3'
+
+services:
+  worker:
+    build:
+      context: .
+      dockerfile: ./dockerfile
+    working_dir: /home/fenics/shared/
+    command:
+      - "./init.sh && ./entry.sh"
+    network_mode: "host"
+    environment:
+      - RMQIP=localhost
+    depends_on:
+      - rmq
+    ports:
+      - 5000:5000
+
+  rmq:
+    image: rabbitmq:3-management
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=admin
+    network_mode: "host"
+
+  flower:
+    image: mher/flower:0.9.5
+    network_mode: "host"
+    depends_on: 
+      - rmq
+    environment:
+      - CELERY_BROKER_URL=pyamqp://admin:admin@localhost:5672//
+      - FLOWER_PORT=8888
