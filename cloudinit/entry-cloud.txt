@@ -15,5 +15,5 @@ runcmd:
  - git init
  - git clone https://github.com/merryaiiit/ACCproject.git && sleep 10
  - pwd
- - cd ./ACCproject/worker
+ - cd ./ACCproject/docker
  - sudo docker-compose -f entry.yml up
