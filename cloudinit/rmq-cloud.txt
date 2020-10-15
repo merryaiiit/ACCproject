@@ -1,0 +1,26 @@
+#cloud-config
+
+apt_update: true
+apt_upgrade: false
+byobu_default: system
+
+runcmd:
+ - HOST=$(hostname)
+ - sed "/127.0.0.1/s/$/ $HOST/" /etc/hosts | sudo tee /etc/hosts
+ - sudo apt -y install docker-compose
+ - sudo apt -y install git
+ - sudo apt -y install python3-pip
+ - cd /home/ubuntu/
+ - pwd
+ - git init
+ - git clone https://github.com/merryaiiit/ACCproject.git && sleep 10
+ - pwd
+ - cd ./ACCproject/docker
+ - sudo docker-compose -f rmq.yml up -d
+ - cd ../cloudinit
+ - RMQIP=$(ip addr show | grep -o 192.*.*.*/)
+ - sed 's,to_be_replaced,'"${RMQIP::-1}"',g' ./entry-cloud.txt
+ - source openrc.sh
+ - pip3 install python-novaclient
+ - pip3 install python-keystoneclient
+ - python3 create_entry.py

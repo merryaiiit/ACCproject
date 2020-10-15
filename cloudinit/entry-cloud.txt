@@ -5,6 +5,7 @@ apt_upgrade: false
 byobu_default: system
 
 runcmd:
+ - RMQIP=to_be_replaced
  - HOST=$(hostname)
  - sed "/127.0.0.1/s/$/ $HOST/" /etc/hosts | sudo tee /etc/hosts
  - sudo apt -y install docker-compose
@@ -15,4 +16,4 @@ runcmd:
  - git clone https://github.com/merryaiiit/ACCproject.git && sleep 10
  - pwd
  - cd ./ACCproject/worker
- - sudo docker-compose -f rmq.yml up
+ - sudo docker-compose -f entry.yml up

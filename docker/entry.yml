@@ -9,5 +9,4 @@ services:
       - "./init.sh && ./entry.sh"
     network_mode: "host"
     environment:
-      - RMQIP=localhost
-
+      - RMQIP=${RMQIP}
