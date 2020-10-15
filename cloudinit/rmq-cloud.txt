@@ -19,5 +19,5 @@ runcmd:
  - sudo docker-compose -f rmq.yml up -d && cd ../cloudinit
  - RMQIP=$(ip addr show | grep -o 192.*.*.*/)
  - sed 's,to_be_replaced,'"${RMQIP::-1}"',g' ./entry-cloud.txt | sudo tee ./entry-cloud.txt
- - ./openrc.sh
+ - /bin/bash ./openrc.sh
  - pip3 install python-novaclient python-keystoneclient && python3 create_entry.py
