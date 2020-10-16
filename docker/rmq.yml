@@ -19,7 +19,7 @@ services:
   nfs:
     image: erichough/nfs-server
     volumes:
-      - /results : /results
+      - /results:/results
     network_mode: "host"
     privileged: true
     environment:
