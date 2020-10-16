@@ -16,13 +16,12 @@ image_name = "Ubuntu 18.04"
 
 loader = loading.get_plugin_loader('password')
 
-auth = loader.load_from_options(auth_url=env['OS_AUTH_URL'],
-                                username=env['OS_USERNAME'],
-                                password=env['OS_PASSWORD'],
-                                project_name=env['OS_PROJECT_NAME'],
-                                project_domain_name=env['OS_USER_DOMAIN_NAME'],
-                                project_id=env['OS_PROJECT_ID'],
-                                user_domain_name=env['OS_USER_DOMAIN_NAME'])
+auth = loader.load_from_options(auth_url="https://east-1.cloud.snic.se:5000/v3",
+                                username="s16071",
+                                password="Sariel199524",
+                                project_name="UPPMAX 2020/1-2",
+                                project_id="fc1aade83c2e49baa7498b3918560d9f",
+                                user_domain_name="snic")
 
 sess = session.Session(auth=auth)
 nova = client.Client('2.1', session=sess)

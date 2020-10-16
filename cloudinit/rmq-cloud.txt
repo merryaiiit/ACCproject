@@ -5,16 +5,6 @@ apt_upgrade: false
 byobu_default: system
 
 runcmd:
- - OS_AUTH_URL=https://east-1.cloud.snic.se:5000/v3
- - OS_PROJECT_ID=fc1aade83c2e49baa7498b3918560d9f
- - OS_PROJECT_NAME="UPPMAX 2020/1-2"
- - OS_USER_DOMAIN_NAME="snic"
- - OS_PROJECT_DOMAIN_ID="5852c2232f1b43beaaee0b16d1e4a6b9"
- - OS_USERNAME="s16071"
- - OS_PASSWORD="Sariel199524"
- - OS_REGION_NAME="east-1"
- - OS_INTERFACE=public
- - OS_IDENTITY_API_VERSION=3
  - HOST=$(hostname)
  - sed "/127.0.0.1/s/$/ $HOST/" /etc/hosts | sudo tee /etc/hosts
  - sudo apt -y install docker-compose
