@@ -5,7 +5,7 @@ apt_upgrade: false
 byobu_default: system
 
 runcmd:
- - modprobe {nfs,nfsd,rpcsec_gss_krb5}
+ - sudo modprobe {nfs,nfsd,rpcsec_gss_krb5}
  - HOST=$(hostname)
  - sed "/127.0.0.1/s/$/ $HOST/" /etc/hosts | sudo tee /etc/hosts
  - sudo apt -y install docker-compose
