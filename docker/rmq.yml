@@ -16,3 +16,11 @@ services:
       - CELERY_BROKER_URL=pyamqp://admin:admin@localhost:5672//
       - FLOWER_PORT=8888
 
+  nfs:
+    image: erichough/nfs-server
+    volumes:
+      /results : /results
+    network_mode: "host"
+    privileged: true
+    environment:
+      - NFS_EXPORT_0=/results
