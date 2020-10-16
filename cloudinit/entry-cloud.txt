@@ -17,4 +17,5 @@ runcmd:
  - git clone https://github.com/merryaiiit/ACCproject.git && sleep 10
  - pwd
  - cd ./ACCproject/docker
+ - echo "RMQIP=to_be_replaced" >> .env
  - sudo docker-compose -f entry.yml up
