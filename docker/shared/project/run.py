@@ -61,7 +61,7 @@ def create_vm(vmname):
     secgroups = ['default']
 
     print("Creating instance ... ")
-    instance = nova.servers.create(name="g10-worker"+vmname, key_name="liju_remote", image=image, flavor=flavor, userdata=userdata, nics=nics,security_groups=secgroups)
+    instance = nova.servers.create(name="g10-"+vmname, key_name="liju_remote", image=image, flavor=flavor, userdata=userdata, nics=nics,security_groups=secgroups)
     inst_status = instance.status
     print("waiting for 10 seconds.. ")
     time.sleep(10)
@@ -76,6 +76,7 @@ def create_vm(vmname):
 
 class Analyze(Resource):
     def get_all(self, num):
+        threshhold = 10
         all = os.listdir("./murtazo/cloudnaca/msh/")
         # Skip msh files
         all_files = []
@@ -85,7 +86,7 @@ class Analyze(Resource):
             all_files.append(file)
         # Sample requested files from all files
         files = sample(all_files, num)
-        num_worker = ceil(len(files)/3)-1
+        num_worker = ceil(len(files)/threshhold)-1
 
         instances = []
         for i in range(num_worker):
