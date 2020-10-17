@@ -6,7 +6,10 @@ services:
       dockerfile: ./dockerfile
     working_dir: /home/fenics/shared/
     command:
-      - "./init.sh && ./entry.sh"
+      - "./init.sh && ./worker.sh"
     network_mode: "host"
     environment:
       - RMQIP=${RMQIP}
+    volumes:
+      /results:/results
+
