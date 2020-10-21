@@ -9,6 +9,14 @@ from math import ceil
 app = Flask(__name__)
 api = Api(app)
 
+def get_nova_creds():
+    d = {}
+    d['version']='2.1'
+    d['username'] ="s17012"
+    d['password'] ="An3y$h@31287"
+    d['auth_url'] ="https://east-1.cloud.snic.se:5000/v3"
+    d['project_id'] ="fc1aade83c2e49baa7498b3918560d9f"
+    return d
 
 def create_vm(vmname):
     # http://docs.openstack.org/developer/python-novaclient/ref/v2/servers.html
@@ -30,8 +38,8 @@ def create_vm(vmname):
     loader = loading.get_plugin_loader('password')
 
     auth = loader.load_from_options(auth_url="https://east-1.cloud.snic.se:5000/v3",
-                                    username="s16071",
-                                    password="Sariel199524",
+                                    username="s17012",
+                                    password="An3y$h@31287",
                                     project_name="UPPMAX 2020/1-2",
                                     project_id="fc1aade83c2e49baa7498b3918560d9f",
                                     user_domain_name="snic")
@@ -75,6 +83,33 @@ def create_vm(vmname):
     print("Instance: "+ instance.name +" is in " + inst_status + "state")
     return instance
 
+def delete_vm(vmname):
+    from  novaclient import client
+    import keystoneclient.v3.client as ksclient
+    from keystoneauth1 import loading
+    from keystoneauth1 import session
+
+
+    loader = loading.get_plugin_loader('password')
+    auth = loader.load_from_options(auth_url="https://east-1.cloud.snic.se:5000/v3",
+                                    username="s17012",
+                                    password="An3y$h@31287",
+                                    project_name="UPPMAX 2020/1-2",
+                                    project_id="fc1aade83c2e49baa7498b3918560d9f",
+                                    user_domain_name="snic")
+
+    sess = session.Session(auth=auth)
+    print("user authorization completed.")
+    creds = get_nova_creds()
+    print("getting creds")
+    nova = client.Client(**creds,session=sess)
+    print("novaclient authorization complete")
+    server = nova.servers.find(name= vmname)
+    print(vmname)
+    server.delete()
+    print("Instance deleted")	
+
+
 class Analyze(Resource):
     def get_all(self, num):
         threshhold = 10
@@ -106,7 +141,8 @@ class Analyze(Resource):
             print("Now finished:", finished, "/", len(results))
 
             # TODO: delete newly-created VMs, objects stored in list instances
-
+        for i in range(num_worker):
+            delete_vm("worker"+str(i))    
         print("hello world!")
         return 0
 
