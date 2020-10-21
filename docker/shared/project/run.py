@@ -73,6 +73,7 @@ def create_vm(vmname):
         inst_status = instance.status
 
     print("Instance: "+ instance.name +" is in " + inst_status + "state")
+    return instance
 
 class Analyze(Resource):
     def get_all(self, num):
@@ -103,6 +104,9 @@ class Analyze(Resource):
             time.sleep(3)
             finished = sum(map(lambda a: a.ready(), results))
             print("Now finished:", finished, "/", len(results))
+
+            # TODO: delete newly-created VMs, objects stored in list instances
+
         print("hello world!")
         return 0
 

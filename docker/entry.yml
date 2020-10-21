@@ -10,3 +10,5 @@ services:
     network_mode: "host"
     environment:
       - RMQIP=${RMQIP}
+    volumes:
+      - /results:/results
