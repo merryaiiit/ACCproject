@@ -69,7 +69,7 @@ def create_vm(vmname):
     secgroups = ['default']
 
     print("Creating instance ... ")
-    instance = nova.servers.create(name="g10-"+vmname, key_name="liju_remote", image=image, flavor=flavor, userdata=userdata, nics=nics,security_groups=secgroups)
+    instance = nova.servers.create(name="g10-"+vmname, key_name="Aneysha_test_instance", image=image, flavor=flavor, userdata=userdata, nics=nics,security_groups=secgroups)
     inst_status = instance.status
     print("waiting for 10 seconds.. ")
     time.sleep(10)
