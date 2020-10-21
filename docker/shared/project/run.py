@@ -112,7 +112,7 @@ def delete_vm(vmname):
 
 class Analyze(Resource):
     def get_all(self, num):
-        threshhold = 10
+        threshhold = 5
         all = os.listdir("./murtazo/cloudnaca/msh/")
         # Skip msh files
         all_files = []
