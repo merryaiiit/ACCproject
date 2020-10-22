@@ -29,5 +29,6 @@ runcmd:
  - RMQIP=$(ifconfig -a | grep "192.*.*.*n" -o | rev | cut -c 4- | rev)
  - echo "Local IP is"
  - sed 's,to_be_replaced,'"${RMQIP}"',g' ./entry-cloud.txt | sudo tee ./entry-cloud.txt
- - mkdir /results/meshes && mkdir /results/results
+ - sudo mkdir /results/meshes && sudo mkdir /results/results
+ - sudo chmod 777 /results/meshes && sudo chmod 777 /results/results
  - pip3 install python-novaclient python-keystoneclient && python3 create_entry.py
