@@ -12,8 +12,8 @@ api = Api(app)
 def get_nova_creds():
     d = {}
     d['version']='2.1'
-    d['username'] ="s17012"
-    d['password'] ="An3y$h@31287"
+    d['username'] ="s16071"
+    d['password'] ="Sariel199524"
     d['auth_url'] ="https://east-1.cloud.snic.se:5000/v3"
     d['project_id'] ="fc1aade83c2e49baa7498b3918560d9f"
     return d
@@ -38,8 +38,8 @@ def create_vm(vmname):
     loader = loading.get_plugin_loader('password')
 
     auth = loader.load_from_options(auth_url="https://east-1.cloud.snic.se:5000/v3",
-                                    username="s17012",
-                                    password="An3y$h@31287",
+                                    username="s16071",
+                                    password="Sariel199524",
                                     project_name="UPPMAX 2020/1-2",
                                     project_id="fc1aade83c2e49baa7498b3918560d9f",
                                     user_domain_name="snic")
@@ -69,7 +69,7 @@ def create_vm(vmname):
     secgroups = ['default']
 
     print("Creating instance ... ")
-    instance = nova.servers.create(name="g10-"+vmname, key_name="Aneysha_test_instance", image=image, flavor=flavor, userdata=userdata, nics=nics,security_groups=secgroups)
+    instance = nova.servers.create(name="g10-"+vmname, key_name="liju_wm", image=image, flavor=flavor, userdata=userdata, nics=nics,security_groups=secgroups)
     inst_status = instance.status
     print("waiting for 10 seconds.. ")
     time.sleep(10)
@@ -92,8 +92,8 @@ def delete_vm(vmname):
 
     loader = loading.get_plugin_loader('password')
     auth = loader.load_from_options(auth_url="https://east-1.cloud.snic.se:5000/v3",
-                                    username="s17012",
-                                    password="An3y$h@31287",
+                                    username="s16071",
+                                    password="Sariel199524",
                                     project_name="UPPMAX 2020/1-2",
                                     project_id="fc1aade83c2e49baa7498b3918560d9f",
                                     user_domain_name="snic")
@@ -107,7 +107,7 @@ def delete_vm(vmname):
     server = nova.servers.find(name="g10-"+vmname)
     print(vmname)
     server.delete()
-    print("Instance deleted")	
+    print("Instance deleted")
 
 
 class Analyze(Resource):
@@ -140,9 +140,9 @@ class Analyze(Resource):
             finished = sum(map(lambda a: a.ready(), results))
             print("Now finished:", finished, "/", len(results))
 
-            # TODO: delete newly-created VMs, objects stored in list instances
+        # TODO: delete newly-created VMs, objects stored in list instances
         for i in range(num_worker):
-            delete_vm("worker"+str(i))    
+            delete_vm("worker"+str(i))
         print("hello world!")
         return 0
 
