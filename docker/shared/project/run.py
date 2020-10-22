@@ -113,7 +113,7 @@ def delete_vm(vmname):
 class Analyze(Resource):
     def get_all(self, num):
         threshhold = 5
-        all = os.listdir("./murtazo/cloudnaca/msh/")
+        all = os.listdir("/meshes/")
         # Skip msh files
         all_files = []
         for file in all:
@@ -129,7 +129,7 @@ class Analyze(Resource):
            instances.append(create_vm("worker"+str(i)))
         print("New workers creating...")
         # wait for all workers initialized
-        time.sleep(600+60*(len(instances)-1))
+        time.sleep(60*7+60*(len(instances)-1))
         results = []
         # Submit tasks to celery
         for file in files:
