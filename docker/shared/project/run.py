@@ -108,10 +108,26 @@ def delete_vm(vmname):
     print(vmname)
     server.delete()
     print("Instance deleted")
+    
+def Conversion():
+    sfx=".xml"
+    path = "/home/fenics/shared/murtazo/cloudnaca/msh"
+    for file in os.listdir(path)
+    #needs correction
+    do
+       name=${file%.msh}
+       echo "${file}"
+       echo "${name}${sfx}"
+       dolfin-convert "${file}" "${name}${sfx}"
+    done
+    os.system("cp /home/fenics/shared/murtazo/cloudnaca/msh/ /meshes/")
 
 
 class Analyze(Resource):
     def get_all(self, num,n1,n2,n3,n4,n5):
+        os.system("cd /home/fenics/shared/murtazo/cloudnaca")
+        os.system ("./runme.sh $n1 $n2 $n3 $n4 $n5")
+        Conversion()
         threshhold = 5
         all = os.listdir("/meshes/")
         # Skip msh files
