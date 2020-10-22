@@ -14,8 +14,10 @@ runcmd:
  - pwd
  - sudo apt install nfs-kernel-server -y
  - sudo mkdir -p /results
+ - sudo mkdir -p /results/results
+ - sudo mkdir -p /results/meshes
  - sudo chown -R nobody:nogroup /results
- - sudo chmod 777 /results
+ - sudo chmod -R 777 /results
  - echo "/results  192.168.2.0/24(rw,sync,no_subtree_check)" >> /etc/exports
  - sudo exportfs -a
  - sudo systemctl restart nfs-kernel-server
@@ -29,6 +31,4 @@ runcmd:
  - RMQIP=$(ifconfig -a | grep "192.*.*.*n" -o | rev | cut -c 4- | rev)
  - echo "Local IP is"
  - sed 's,to_be_replaced,'"${RMQIP}"',g' ./entry-cloud.txt | sudo tee ./entry-cloud.txt
- - sudo mkdir /results/meshes && sudo mkdir /results/results
- - sudo chmod 777 /results/meshes && sudo chmod 777 /results/results
  - pip3 install python-novaclient python-keystoneclient && python3 create_entry.py
