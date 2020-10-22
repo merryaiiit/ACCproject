@@ -11,4 +11,5 @@ services:
     environment:
       - RMQIP=${RMQIP}
     volumes:
-      - /results:/results
+      - /results/results:/results
+      - /results/meshes:/meshes
