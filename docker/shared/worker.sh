@@ -4,5 +4,5 @@ tar xvf navier_stokes_solver.tar
 cd navier_stokes_solver/src && ./compile_forms
 cd .. && cmake . && make -j 2
 echo "Make --- finished"
-
+cd /home/fenics/shared/
 celery -A project worker & sleep infinity
