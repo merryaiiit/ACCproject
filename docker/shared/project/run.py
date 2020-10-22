@@ -111,7 +111,7 @@ def delete_vm(vmname):
 
 
 class Analyze(Resource):
-    def get_all(self, num):
+    def get_all(self, num,n1,n2,n3,n4,n5):
         threshhold = 5
         all = os.listdir("/meshes/")
         # Skip msh files
@@ -150,9 +150,9 @@ class Analyze(Resource):
         print("hello world!")
         return 0
 
-    def get(self, num):
-        return self.get_all(num)
+    def get(self, num, n1,n2,n3,n4,n5):
+        return self.get_all(num, n1,n2,n3,n4,n5)
 
-api.add_resource(Analyze, '/<int:num>')
+api.add_resource(Analyze, '/<int:num>/<int:n1>/<int:n2>/<int:n3>/<int:nu4>/<int:n5>')
 if __name__ == '__main__':
     app.run(debug=True, host= '0.0.0.0')
