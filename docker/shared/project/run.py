@@ -128,24 +128,21 @@ class Analyze(Resource):
         for i in range(num_worker):
            instances.append(create_vm("worker"+str(i)))
         print("New workers creating...")
+        
         # wait for all workers initialized
         time.sleep(60*7+60*(len(instances)-1))
         results = []
-        # Submit tasks to celery one by one
-        for file in files[:(num_worker+1)]:
+        # Submit all tasks to queue
+        for file in files:
             results.append(analyze.delay(file))
-
-        finished = 0
-        submitted = num_worker+1
+        
+        # Waits for the tasks to be done
+        finished = 0 
         while finished != len(results):
             print("waiting...")
             time.sleep(3)
             finished = sum(map(lambda a: a.ready(), results))
-            free_worker = (num_worker+1) - (submitted - finished)
-            if (submitted<len(files)):
-                for file in files[submitted:(submitted+free_worker)]:
-                    results.append(analyze.delay(file))
-                submitted += free_worker
+            print("Now finished:", finished, "/", len(results))
 
         # TODO: delete newly-created VMs, objects stored in list instances
         for i in range(num_worker):
