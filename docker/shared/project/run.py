@@ -104,7 +104,7 @@ def delete_vm(vmname):
     print("getting creds")
     nova = client.Client(**creds,session=sess)
     print("novaclient authorization complete")
-    server = nova.servers.find(name= vmname)
+    server = nova.servers.find(name="g10-"+vmname)
     print(vmname)
     server.delete()
     print("Instance deleted")	
