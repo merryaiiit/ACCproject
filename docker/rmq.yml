@@ -15,6 +15,3 @@ services:
     environment:
       - CELERY_BROKER_URL=pyamqp://admin:admin@localhost:5672//
       - FLOWER_PORT=8888
-      
-volumes:
-      - /results:/results   
