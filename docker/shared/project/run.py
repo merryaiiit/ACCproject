@@ -127,7 +127,9 @@ class Analyze(Resource):
         instances = []
         for i in range(num_worker):
            instances.append(create_vm("worker"+str(i)))
-
+        print("New workers creating...")
+        # wait for all workers initialized
+        time.sleep(600+60*(len(instances)-1))
         results = []
         # Submit tasks to celery
         for file in files:
