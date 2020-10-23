@@ -111,8 +111,10 @@ def delete_vm(vmname):
     
 def Conversion():
     sfx=".xml"
+    os.system("cd /home/fenics/shared/murtazo/cloudnaca/msh/")
     path = "/home/fenics/shared/murtazo/cloudnaca/msh/"
-    for file in os.listdir(path)
+    print(path)
+    for file in os.listdir("/home/fenics/shared/murtazo/cloudnaca/msh/")
     #needs correction
        name=file
        print (name)
@@ -126,8 +128,10 @@ def Conversion():
 
 class Analyze(Resource):
     def get_all(self,n1,n2,n3,n4,n5):
+        print("received input")
         os.system("cd /home/fenics/shared/murtazo/cloudnaca")
         os.system ("./runme.sh $n1 $n2 $n3 $n4 $n5")
+        print("running runme.sh")
         Conversion()
         threshhold = 5
         all = os.listdir("/meshes/")
