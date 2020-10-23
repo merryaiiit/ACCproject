@@ -114,17 +114,18 @@ def Conversion():
     path = "/home/fenics/shared/murtazo/cloudnaca/msh"
     for file in os.listdir(path)
     #needs correction
-    do
-       name=${file%.msh}
-       echo "${file}"
-       echo "${name}${sfx}"
-       dolfin-convert "${file}" "${name}${sfx}"
-    done
-    os.system("cp /home/fenics/shared/murtazo/cloudnaca/msh/ /meshes/")
+       name=file
+       print (name)
+       mod_name = name.strip('.msh')
+       print (mod_name)
+       new_name = mod_name + sfx
+       print(new_name)
+       os.system("dolfin-convert $name $new_name")
+    os.system("cp -r /home/fenics/shared/murtazo/cloudnaca/msh/* /meshes/")
 
 
 class Analyze(Resource):
-    def get_all(self, num,n1,n2,n3,n4,n5):
+    def get_all(self,n1,n2,n3,n4,n5):
         os.system("cd /home/fenics/shared/murtazo/cloudnaca")
         os.system ("./runme.sh $n1 $n2 $n3 $n4 $n5")
         Conversion()
@@ -137,8 +138,8 @@ class Analyze(Resource):
                 continue
             all_files.append(file)
         # Sample requested files from all files
-        files = sample(all_files, num)
-        num_worker = ceil(len(files)/threshhold)-1
+        #files = sample(all_files, num)
+        num_worker = ceil(len(all_files)/threshhold)-1
 
         instances = []
         for i in range(num_worker):
@@ -149,7 +150,7 @@ class Analyze(Resource):
         time.sleep(60*7+60*(len(instances)-1))
         results = []
         # Submit all tasks to queue
-        for file in files:
+        for file in all_files:
             results.append(analyze.delay(file))
         
         # Waits for the tasks to be done
@@ -166,9 +167,9 @@ class Analyze(Resource):
         print("hello world!")
         return 0
 
-    def get(self, num, n1,n2,n3,n4,n5):
-        return self.get_all(num, n1,n2,n3,n4,n5)
+    def get(self,n1,n2,n3,n4,n5):
+        return self.get_all(n1,n2,n3,n4,n5)
 
-api.add_resource(Analyze, '/<int:num>/<int:n1>/<int:n2>/<int:n3>/<int:nu4>/<int:n5>')
+api.add_resource(Analyze, '/<int:n1>/<int:n2>/<int:n3>/<int:nu4>/<int:n5>')
 if __name__ == '__main__':
     app.run(debug=True, host= '0.0.0.0')
