@@ -114,7 +114,7 @@ def Conversion():
     sfx=".xml"
     #os.system("cd /home/fenics/shared/murtazo/cloudnaca/msh/")
     #path = "/home/fenics/shared/murtazo/cloudnaca/msh/"
-    print(path)
+    #print(path)
     for file in os.listdir("/home/fenics/shared/murtazo/cloudnaca/msh/"):
     #needs correction
        name=file
