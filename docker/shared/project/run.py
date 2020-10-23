@@ -114,7 +114,7 @@ def Conversion():
     os.system("cd /home/fenics/shared/murtazo/cloudnaca/msh/")
     path = "/home/fenics/shared/murtazo/cloudnaca/msh/"
     print(path)
-    for file in os.listdir("/home/fenics/shared/murtazo/cloudnaca/msh/")
+    for file in os.listdir("/home/fenics/shared/murtazo/cloudnaca/msh/"):
     #needs correction
        name=file
        print (name)
