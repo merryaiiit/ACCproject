@@ -111,7 +111,7 @@ def delete_vm(vmname):
     
 def Conversion():
     sfx=".xml"
-    path = "/home/fenics/shared/murtazo/cloudnaca/msh"
+    path = "/home/fenics/shared/murtazo/cloudnaca/msh/"
     for file in os.listdir(path)
     #needs correction
        name=file
