@@ -4,6 +4,7 @@ from flask_restful import Resource, Api
 from .tasks import analyze
 import time
 import os
+from os import environ
 from random import sample
 from math import ceil
 app = Flask(__name__)
@@ -128,8 +129,12 @@ def Conversion():
 
 class Analyze(Resource):
     def get_all(self,n1,n2,n3,n4,n5):
-        print("received input")
-        os.system("cd /home/fenics/shared/murtazo/cloudnaca && ./runme.sh $n1 $n2 $n3 $n4 $n5")
+        os.environ['num1']=str(n1)
+        os.environ['num2']=str(n2)
+        os.environ['num3']=str(n3)
+        os.environ['num4']=str(n4)
+        os.environ['num5']=str(n5)
+        os.system("cd /home/fenics/shared/murtazo/cloudnaca && ./runme.sh $num1 $num2 $num3 $num4 $num5")
         #os.system ("./runme.sh $n1 $n2 $n3 $n4 $n5")
         print("running runme.sh")
         Conversion()
