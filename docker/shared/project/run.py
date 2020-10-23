@@ -129,8 +129,8 @@ def Conversion():
 class Analyze(Resource):
     def get_all(self,n1,n2,n3,n4,n5):
         print("received input")
-        os.system("cd /home/fenics/shared/murtazo/cloudnaca")
-        os.system ("./runme.sh $n1 $n2 $n3 $n4 $n5")
+        os.system("cd /home/fenics/shared/murtazo/cloudnaca && ./runme.sh $n1 $n2 $n3 $n4 $n5")
+        #os.system ("./runme.sh $n1 $n2 $n3 $n4 $n5")
         print("running runme.sh")
         Conversion()
         threshhold = 5
