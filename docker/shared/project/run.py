@@ -112,8 +112,8 @@ def delete_vm(vmname):
     
 def Conversion():
     sfx=".xml"
-    os.system("cd /home/fenics/shared/murtazo/cloudnaca/msh/")
-    path = "/home/fenics/shared/murtazo/cloudnaca/msh/"
+    #os.system("cd /home/fenics/shared/murtazo/cloudnaca/msh/")
+    #path = "/home/fenics/shared/murtazo/cloudnaca/msh/"
     print(path)
     for file in os.listdir("/home/fenics/shared/murtazo/cloudnaca/msh/"):
     #needs correction
@@ -125,7 +125,7 @@ def Conversion():
        print(new_name)
        os.environ['arg1']=name
        os.environ['arg2']=new_name
-       os.system("dolfin-convert $arg1 $arg2")
+       os.system("cd /home/fenics/shared/murtazo/cloudnaca/msh/ && dolfin-convert $arg1 $arg2")
     os.system("cp -r /home/fenics/shared/murtazo/cloudnaca/msh/* /meshes/")
 
 
