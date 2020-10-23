@@ -174,6 +174,6 @@ class Analyze(Resource):
     def get(self,n1,n2,n3,n4,n5):
         return self.get_all(n1,n2,n3,n4,n5)
 
-api.add_resource(Analyze, '/<int:n1>/<int:n2>/<int:n3>/<int:nu4>/<int:n5>')
+api.add_resource(Analyze, '/<int:n1>/<int:n2>/<int:n3>/<int:n4>/<int:n5>')
 if __name__ == '__main__':
     app.run(debug=True, host= '0.0.0.0')
