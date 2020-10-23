@@ -123,7 +123,9 @@ def Conversion():
        print (mod_name)
        new_name = mod_name + sfx
        print(new_name)
-       os.system("dolfin-convert $name $new_name")
+       os.environ['arg1']=name
+       os.environ['arg2']=new_name
+       os.system("dolfin-convert $arg1 $arg2")
     os.system("cp -r /home/fenics/shared/murtazo/cloudnaca/msh/* /meshes/")
 
 
