@@ -11,13 +11,19 @@ app = Flask(__name__)
 api = Api(app)
 
 def get_nova_creds():
+    # d = {}
+    # d['version']='2.1'
+    # d['username'] ="s17012"
+    # d['password'] ="An3y$h@31287"
+    # d['auth_url'] ="https://east-1.cloud.snic.se:5000/v3"
+    # d['project_id'] ="fc1aade83c2e49baa7498b3918560d9f"
     d = {}
     d['version']='2.1'
-    d['username'] ="s17012"
-    d['password'] ="An3y$h@31287"
+    d['username'] ="s16071"
+    d['password'] ="Sariel199524"
     d['auth_url'] ="https://east-1.cloud.snic.se:5000/v3"
     d['project_id'] ="fc1aade83c2e49baa7498b3918560d9f"
-    return d
+   return d
 
 def create_vm(vmname):
     # http://docs.openstack.org/developer/python-novaclient/ref/v2/servers.html
@@ -38,12 +44,19 @@ def create_vm(vmname):
 
     loader = loading.get_plugin_loader('password')
 
+    # auth = loader.load_from_options(auth_url="https://east-1.cloud.snic.se:5000/v3",
+    #                                 username="s17012",
+    #                                 password="An3y$h@31287",
+    #                                 project_name="UPPMAX 2020/1-2",
+    #                                 project_id="fc1aade83c2e49baa7498b3918560d9f",
+    #                                 user_domain_name="snic")
     auth = loader.load_from_options(auth_url="https://east-1.cloud.snic.se:5000/v3",
-                                    username="s17012",
-                                    password="An3y$h@31287",
+                                    username="s16071",
+                                    password="Sariel199524",
                                     project_name="UPPMAX 2020/1-2",
                                     project_id="fc1aade83c2e49baa7498b3918560d9f",
                                     user_domain_name="snic")
+
 
     sess = session.Session(auth=auth)
     nova = client.Client('2.1', session=sess)
@@ -92,12 +105,19 @@ def delete_vm(vmname):
 
 
     loader = loading.get_plugin_loader('password')
+    # auth = loader.load_from_options(auth_url="https://east-1.cloud.snic.se:5000/v3",
+    #                                 username="s17012",
+    #                                 password="An3y$h@31287",
+    #                                 project_name="UPPMAX 2020/1-2",
+    #                                 project_id="fc1aade83c2e49baa7498b3918560d9f",
+    #                                 user_domain_name="snic")
     auth = loader.load_from_options(auth_url="https://east-1.cloud.snic.se:5000/v3",
-                                    username="s17012",
-                                    password="An3y$h@31287",
+                                    username="s16071",
+                                    password="Sariel199524",
                                     project_name="UPPMAX 2020/1-2",
                                     project_id="fc1aade83c2e49baa7498b3918560d9f",
                                     user_domain_name="snic")
+
 
     sess = session.Session(auth=auth)
     print("user authorization completed.")
@@ -109,7 +129,7 @@ def delete_vm(vmname):
     print(vmname)
     server.delete()
     print("Instance deleted")
-    
+
 def Conversion():
     sfx=".xml"
     #os.system("cd /home/fenics/shared/murtazo/cloudnaca/msh/")
@@ -156,16 +176,16 @@ class Analyze(Resource):
         for i in range(num_worker):
            instances.append(create_vm("worker"+str(i)))
         print("New workers creating...")
-        
+
         # wait for all workers initialized
         time.sleep(60*7+60*(len(instances)-1))
         results = []
         # Submit all tasks to queue
         for file in all_files:
             results.append(analyze.delay(file))
-        
+
         # Waits for the tasks to be done
-        finished = 0 
+        finished = 0
         while finished != len(results):
             print("waiting...")
             time.sleep(3)
