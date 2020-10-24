@@ -160,7 +160,7 @@ class Analyze(Resource):
         #os.system ("./runme.sh $n1 $n2 $n3 $n4 $n5")
         print("running runme.sh")
         Conversion()
-        threshhold = 5
+        threshhold = 10
         all = os.listdir("/meshes/")
         # Skip msh files
         all_files = []
