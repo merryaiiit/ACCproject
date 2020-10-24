@@ -156,9 +156,10 @@ class Analyze(Resource):
         os.environ['num3']=str(n3)
         os.environ['num4']=str(n4)
         os.environ['num5']=str(n5)
-        os.system("cd /home/fenics/shared/murtazo/cloudnaca && ./runme.sh $num1 $num2 $num3 $num4 $num5")
+        os.system("rm -f /home/fenics/shared/murtazo/cloudnaca/msh/*")
         os.system("rm -f /meshes/*")
         os.system("rm -f /results/*")
+        os.system("cd /home/fenics/shared/murtazo/cloudnaca && ./runme.sh $num1 $num2 $num3 $num4 $num5")
         print("running runme.sh")
         Conversion()
         threshhold = 10
