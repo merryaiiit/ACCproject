@@ -5,7 +5,7 @@ from .tasks import analyze
 import time
 import os
 from os import environ
-from random import sample
+from random import shuffle
 from math import ceil
 app = Flask(__name__)
 api = Api(app)
@@ -184,6 +184,7 @@ class Analyze(Resource):
         start_time = time.time()
         results = []
         # Submit all tasks to queue
+        shuffle(all_files)
         for file in all_files:
             results.append(analyze.delay(file))
 
