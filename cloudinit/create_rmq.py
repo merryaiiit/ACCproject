@@ -55,7 +55,7 @@ else:
 secgroups = ['default']
 
 print("Creating instance ... ")
-instance = nova.servers.create(name="g10-rmq", key_name="Aneysha_test_instance", image=image, flavor=flavor, userdata=userdata, nics=nics,security_groups=secgroups)
+instance = nova.servers.create(name="g10-rmq", key_name="liju_wm", image=image, flavor=flavor, userdata=userdata, nics=nics,security_groups=secgroups)
 inst_status = instance.status
 print("waiting for 10 seconds.. ")
 time.sleep(10)
