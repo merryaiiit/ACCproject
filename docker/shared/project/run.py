@@ -23,7 +23,7 @@ def get_nova_creds():
     #d['password'] ="Sariel199524"
     #d['auth_url'] ="https://east-1.cloud.snic.se:5000/v3"
     #d['project_id'] ="fc1aade83c2e49baa7498b3918560d9f"
-    return d
+     return d
 
 def create_vm(vmname):
     # http://docs.openstack.org/developer/python-novaclient/ref/v2/servers.html
