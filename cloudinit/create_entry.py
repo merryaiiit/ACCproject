@@ -23,12 +23,13 @@ loader = loading.get_plugin_loader('password')
 #                                project_id="fc1aade83c2e49baa7498b3918560d9f",
 #                                user_domain_name="snic")
 
- auth = loader.load_from_options(auth_url="https://east-1.cloud.snic.se:5000/v3",
-                                 username="s17012",
-                                 password="An3y$h@31287",
-                                 project_name="UPPMAX 2020/1-2",
-                                 project_id="fc1aade83c2e49baa7498b3918560d9f",
-                                 user_domain_name="snic")
+auth = loader.load_from_options(auth_url="https://east-1.cloud.snic.se:5000/v3",
+                                username="s17012",
+                                password="An3y$h@31287",
+                                project_name="UPPMAX 2020/1-2",
+                                project_id="fc1aade83c2e49baa7498b3918560d9f",
+                                user_domain_name="snic")
+
 sess = session.Session(auth=auth)
 nova = client.Client('2.1', session=sess)
 print("user authorization completed.")
