@@ -163,7 +163,7 @@ class Analyze(Resource):
         os.system("cd /home/fenics/shared/murtazo/cloudnaca && ./runme.sh $num1 $num2 $num3 $num4 $num5")
         print("running runme.sh")
         Conversion()
-        threshhold = 10
+        #threshhold = 10
         all = os.listdir("/meshes/")
         # Skip msh files
         all_files = []
@@ -173,15 +173,15 @@ class Analyze(Resource):
             all_files.append(file)
         # Sample requested files from all files
         #files = sample(all_files, num)
-        num_worker = ceil(len(all_files)/threshhold)-1
+        #num_worker = ceil(len(all_files)/threshhold)-1
 
-        instances = []
-        for i in range(num_worker):
-           instances.append(create_vm("worker"+str(i)))
-        print("New workers creating...")
+        #instances = []
+        #for i in range(num_worker):
+        #   instances.append(create_vm("worker"+str(i)))
+        #print("New workers creating...")
 
         # wait for all workers initialized
-        time.sleep(60*7+60*(len(instances)-1))
+        #time.sleep(60*7+60*(len(instances)-1))
         start_time = time.time()
         results = []
         # Submit all tasks to queue
@@ -198,9 +198,9 @@ class Analyze(Resource):
             print("Now finished:", finished, "/", len(results))
 
         # TODO: delete newly-created VMs, objects stored in list instances
-        for i in range(num_worker):
-            delete_vm("worker"+str(i))
-        print("hello world!")
+        #for i in range(num_worker):
+        #    delete_vm("worker"+str(i))
+        #print("hello world!")
         return time.time()-start_time
 
     def get(self,n1,n2,n3,n4,n5):
