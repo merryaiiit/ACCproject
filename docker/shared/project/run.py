@@ -176,7 +176,7 @@ class Analyze(Resource):
         #num_worker = ceil(len(all_files)/threshhold)-1
 
         instances = []
-        for i in range(1):
+        for i in range(2):
            instances.append(create_vm("worker"+str(i)))
         print("New workers creating...")
 
