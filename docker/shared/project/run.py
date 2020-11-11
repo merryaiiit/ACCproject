@@ -176,7 +176,7 @@ class Analyze(Resource):
         #num_worker = ceil(len(all_files)/threshhold)-1
 
         instances = []
-        for i in range(4):
+        for i in range(3):
            instances.append(create_vm("worker"+str(i)))
         print("New workers creating...")
 
@@ -198,7 +198,7 @@ class Analyze(Resource):
             print("Now finished:", finished, "/", len(results))
 
         # TODO: delete newly-created VMs, objects stored in list instances
-        for i in range(4):
+        for i in range(3):
             delete_vm("worker"+str(i))
         #print("hello world!")
         return time.time()-start_time
