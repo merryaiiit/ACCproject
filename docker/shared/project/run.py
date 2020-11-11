@@ -175,13 +175,13 @@ class Analyze(Resource):
         #files = sample(all_files, num)
         #num_worker = ceil(len(all_files)/threshhold)-1
 
-        instances = []
-        for i in range(1):
-           instances.append(create_vm("worker"+str(i)))
-        print("New workers creating...")
+        #instances = []
+        #for i in range(1):
+        #   instances.append(create_vm("worker"+str(i)))
+        #print("New workers creating...")
 
         # wait for all workers initialized
-        time.sleep(60*7+60*(len(instances)-1))
+        #time.sleep(60*7+60*(len(instances)-1))
         start_time = time.time()
         results = []
         # Submit all tasks to queue
@@ -198,8 +198,8 @@ class Analyze(Resource):
             print("Now finished:", finished, "/", len(results))
 
         # TODO: delete newly-created VMs, objects stored in list instances
-        for i in range(1):
-            delete_vm("worker"+str(i))
+        #for i in range(1):
+        #    delete_vm("worker"+str(i))
         #print("hello world!")
         return time.time()-start_time
 
