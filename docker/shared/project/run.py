@@ -198,7 +198,7 @@ class Analyze(Resource):
             print("Now finished:", finished, "/", len(results))
 
         # TODO: delete newly-created VMs, objects stored in list instances
-        for i in range(1):
+        for i in range(3):
             delete_vm("worker"+str(i))
         #print("hello world!")
         return time.time()-start_time
